@@ -1,0 +1,59 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="layout.AccountPage">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:id="@+id/account_Photo"
+            app:srcCompat="@drawable/ic_empty_user_photo_128dp"
+            android:layout_marginTop="48dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:text="About Me or Some Account Info can go here"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/account_Photo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="70dp"
+            android:id="@+id/textView" />
+
+        <Button
+            android:text="Change Info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="49dp"
+            android:id="@+id/changeInfoButton"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="15dp" />
+
+        <Button
+            android:text="Change Password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/changePasswordButton"
+            android:layout_alignBaseline="@+id/changeInfoButton"
+            android:layout_alignBottom="@+id/changeInfoButton"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="14dp"
+            style="@style/Widget.AppCompat.Button.Colored" />
+
+    </RelativeLayout>
+</FrameLayout>
