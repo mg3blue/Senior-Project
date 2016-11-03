@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1081209883090",
+    "firebase_url": "https://chatdemorest.firebaseio.com",
+    "project_id": "chatdemorest",
+    "storage_bucket": "chatdemorest.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1081209883090:android:4287911dca6b5dad",
+        "android_client_info": {
+          "package_name": "com.blue.chatdemorest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1081209883090-0qb8ahu5oecptc272v5a2qrm23u9gfpn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKpkKXyjntVdT1KiJl-b1seXOI4bvuDwE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
