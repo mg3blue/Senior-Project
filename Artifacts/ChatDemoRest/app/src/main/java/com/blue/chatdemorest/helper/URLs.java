@@ -5,7 +5,7 @@ package com.blue.chatdemorest.helper;
  */
 
 public class URLs {
-    public static final String ROOT_URL = "http://172.28.145.143/ChatDemo/eden/";
+    public static final String ROOT_URL = "http://172.21.38.231/ChatDemo/eden/";
     //172.28.145.143
 
     public static final String URL_REGISTER = ROOT_URL + "register";
