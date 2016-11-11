@@ -1,4 +1,4 @@
-package com.blue.chatdemorest.activities;
+package com.app.seniorproject.mainseniorprojectpart;
 
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
@@ -27,15 +27,13 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.app.seniorproject.mainseniorprojectpart.gcm.GCMRegistrationIntentService;
-import com.blue.chatdemorest.helper.AppController;
-import com.blue.chatdemorest.helper.Constants;
-import com.blue.chatdemorest.helper.Message;
-import com.blue.chatdemorest.helper.ThreadAdapter;
-import com.blue.chatdemorest.helper.URLs;
+import com.app.seniorproject.mainseniorprojectpart.helper.AppController;
+import com.app.seniorproject.mainseniorprojectpart.helper.Constants;
+import com.app.seniorproject.mainseniorprojectpart.helper.Message;
+import com.app.seniorproject.mainseniorprojectpart.helper.ThreadAdapter;
+import com.app.seniorproject.mainseniorprojectpart.helper.URLs;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
-
-
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -46,7 +44,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import com.blue.chatdemorest.R;
 
 
 public class ChatRoomActivity extends AppCompatActivity implements View.OnClickListener {
@@ -291,12 +288,15 @@ public class ChatRoomActivity extends AppCompatActivity implements View.OnClickL
     }
 
     //Creating option menu to add logout feature
+
+    /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         //Adding our menu to toolbar
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
+
 
     //Adding logout option here
     @Override
@@ -309,4 +309,6 @@ public class ChatRoomActivity extends AppCompatActivity implements View.OnClickL
         }
         return super.onOptionsItemSelected(item);
     }
+
+    */
 }

@@ -1,28 +1,16 @@
-package com.blue.chatdemorest.gcm;
+package com.app.seniorproject.mainseniorprojectpart.gcm;
 
 /**
  * Created by Blue on 10/31/2016.
  */
 
-import android.app.ActivityManager;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
-import android.support.v7.app.NotificationCompat;
-import android.util.Log;
 
 
-import java.util.List;
-
-import com.blue.chatdemorest.helper.Constants;
-import com.blue.chatdemorest.helper.NotificationHandler;
+import com.app.seniorproject.mainseniorprojectpart.helper.Constants;
+import com.app.seniorproject.mainseniorprojectpart.helper.NotificationHandler;
 import com.google.android.gms.gcm.GcmListenerService;
 
 public class GCMPushReceiverService extends GcmListenerService {

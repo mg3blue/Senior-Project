@@ -1,4 +1,4 @@
-package com.blue.chatdemorest.gcm;
+package com.app.seniorproject.mainseniorprojectpart.gcm;
 
 import android.content.Intent;
 

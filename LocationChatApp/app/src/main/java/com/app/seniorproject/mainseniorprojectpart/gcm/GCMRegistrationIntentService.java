@@ -1,4 +1,4 @@
-package com.blue.chatdemorest.gcm;
+package com.app.seniorproject.mainseniorprojectpart.gcm;
 
 /**
  * Created by Blue on 10/31/2016.
@@ -14,9 +14,9 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.blue.chatdemorest.R;
-import com.blue.chatdemorest.helper.AppController;
-import com.blue.chatdemorest.helper.URLs;
+import com.app.seniorproject.mainseniorprojectpart.R;
+import com.app.seniorproject.mainseniorprojectpart.helper.AppController;
+import com.app.seniorproject.mainseniorprojectpart.helper.URLs;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.android.gms.iid.InstanceID;
 
