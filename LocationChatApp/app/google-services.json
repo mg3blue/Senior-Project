@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "736199324726",
+    "firebase_url": "https://locationchatapp-58a05.firebaseio.com",
+    "project_id": "locationchatapp-58a05",
+    "storage_bucket": "locationchatapp-58a05.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:736199324726:android:35dabc67c99b6e78",
+        "android_client_info": {
+          "package_name": "com.app.seniorproject.mainseniorprojectpart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "736199324726-vq3u14tmprmtfgkc4rv3b428om786gk4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAogQ_fOUgHwmN1VhfXm0SY3ra-L4PuCB4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
