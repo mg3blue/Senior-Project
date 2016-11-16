@@ -57,8 +57,10 @@ public class MapPage extends Fragment implements OnMapReadyCallback, GoogleApiCl
 
     protected Location mLastLocation;
     private LocationRequest mLocationRequest;
+
     double longitudeValue;
     double latitudeValue;
+
     int markerCount = 1;
 
 
@@ -102,6 +104,7 @@ public class MapPage extends Fragment implements OnMapReadyCallback, GoogleApiCl
                 ContextCompat.checkSelfPermission( getContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return  ;
         }
+
         mLocationRequest = new LocationRequest();
         mLocationRequest.setInterval(1000);
         mLocationRequest.setFastestInterval(1000);
@@ -148,6 +151,7 @@ public class MapPage extends Fragment implements OnMapReadyCallback, GoogleApiCl
             if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 mMap.setMyLocationEnabled(true);
             } else {
+
 //                Snackbar.make(view, "premission not granted", Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
         } else {
@@ -158,7 +162,6 @@ public class MapPage extends Fragment implements OnMapReadyCallback, GoogleApiCl
 
     @Override
     public void onLocationChanged(Location location) {
-
         mLastLocation = location;
     }
 
@@ -180,9 +183,6 @@ public class MapPage extends Fragment implements OnMapReadyCallback, GoogleApiCl
 //                        .setAction("Action", null).show();
 
                 try {
-
-//                    location = mMap.getMyLocation();
-                    // this method will work but gonna test with a non deprecated method
 
                     longitudeValue = mLastLocation.getLongitude();
                     System.out.println("Longitude: " + longitudeValue);

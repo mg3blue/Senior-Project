@@ -26,11 +26,15 @@ import layout.MapPage;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
+
     NavigationView navigationView = null;
+
     private DrawerLayout myDrawer;
     private Toolbar myToolBar;
     private ViewPager mViewPager;
+
     private final int TAB_COUNT = 3;
+
     private ActionBarDrawerToggle mDrawerToggle;
 
 
