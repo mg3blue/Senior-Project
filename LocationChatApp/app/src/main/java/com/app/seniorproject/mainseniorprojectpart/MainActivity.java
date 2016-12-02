@@ -20,6 +20,7 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import layout.AccountPage;
+import layout.ChatPage;
 import layout.FriendPage;
 import layout.MapPage;
 
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Toolbar myToolBar;
     private ViewPager mViewPager;
 
-    private final int TAB_COUNT = 3;
+    private final int TAB_COUNT = 4;
 
     private ActionBarDrawerToggle mDrawerToggle;
 
@@ -141,6 +142,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 case 2:
                     AccountPage tab3 = new AccountPage();
                     return tab3;
+                case 3:
+                    ChatPage tab4 = new ChatPage();
+                    return tab4;
                 default:
                     return null;
             }

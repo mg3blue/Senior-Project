@@ -30,6 +30,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.app.seniorproject.mainseniorprojectpart.dialogs.LoginDialog;
+import com.app.seniorproject.mainseniorprojectpart.dialogs.RegisterDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,8 +76,8 @@ public class LoginActivity extends AppCompatActivity{
         mEmailRegisterButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                LoginDialog dialog = new LoginDialog();
-                dialog.show(getSupportFragmentManager(), "dialog_register");
+                RegisterDialog Rdialog = new RegisterDialog();
+                Rdialog.show(getSupportFragmentManager(), "dialog_register");
             }
         });
 
