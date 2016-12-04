@@ -79,13 +79,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 //        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
 //                this, myDrawer, myToolBar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        myDrawer.setDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
 
         navigationView.setNavigationItemSelectedListener(this);
 
+        myDrawer.setDrawerListener(mDrawerToggle);
     }
 
     @Override
@@ -166,6 +166,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     return "Friends";
                 case 2:
                     return "Account";
+                case 3:
+                    return "Chat";
             }
             return null;
         }
