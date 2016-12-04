@@ -3,6 +3,7 @@ package com.app.seniorproject.mainseniorprojectpart;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -40,9 +41,10 @@ import static android.Manifest.permission.READ_CONTACTS;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity{
+public class LoginActivity extends AppCompatActivity implements LoginDialogComm{
 
     private static final int REQUEST_READ_CONTACTS = 0;
+
 
     private static final String[] DUMMY_CREDENTIALS = new String[]{
             "foo@example.com:hello", "bar@example.com:world"
@@ -209,6 +211,18 @@ public class LoginActivity extends AppCompatActivity{
         mEmailView.setAdapter(adapter);
     }
 
+    @Override
+    public void methodToPassDataToLogin(boolean flag) {
+        StartMainActivity(flag);
+
+    }
+
+    public void StartMainActivity(boolean flag){
+        if(flag){
+            Intent intentm = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intentm);
+        }
+    }
 
     private interface ProfileQuery {
         String[] PROJECTION = {
@@ -275,6 +289,9 @@ public class LoginActivity extends AppCompatActivity{
             mAuthTask = null;
             showProgress(false);
         }
+
+
+
     }
 }
 
