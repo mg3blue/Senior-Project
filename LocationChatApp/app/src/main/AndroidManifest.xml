@@ -20,6 +20,7 @@
          location permissions for the 'MyLocation' functionality. 
     -->
     <application
+        android:name=".helper.AppController"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -32,6 +33,36 @@
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
+
+        <!--             GCM Receiver -->
+        <receiver
+            android:name="com.google.android.gms.gcm.GcmReceiver"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+
+                <category android:name="com.gnirt69.gcmexample" />
+            </intent-filter>
+        </receiver>
+
+        <!--             GCM Receiver Service -->
+        <service
+            android:name="com.app.seniorproject.mainseniorprojectpart.gcm.GCMPushReceiverService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </service>
+
+        <!--             GCM Registration Intent Service -->
+        <service
+            android:name="com.app.seniorproject.mainseniorprojectpart.gcm.GCMRegistrationIntentService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.android.gms.iid.InstanceID" />
+            </intent-filter>
+        </service>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

@@ -13,9 +13,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.seniorproject.mainseniorprojectpart.R;
+import com.app.seniorproject.mainseniorprojectpart.helper.AppController;
+import com.app.seniorproject.mainseniorprojectpart.helper.Constants;
 
 public class AccountPage extends Fragment {
 
@@ -45,6 +48,9 @@ public class AccountPage extends Fragment {
                 openGallery();
             }
         });
+
+        //TextView test = (TextView) getActivity().findViewById(R.id.textView);
+        //test.setText(AppController.getInstance().getUserName());
 
         return inflatedView;
     }
