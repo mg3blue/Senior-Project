@@ -1,7 +1,9 @@
 package com.app.seniorproject.mainseniorprojectpart.dialogs;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,6 +24,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.app.seniorproject.mainseniorprojectpart.LoginActivity;
 import com.app.seniorproject.mainseniorprojectpart.LoginDialogComm;
 import com.app.seniorproject.mainseniorprojectpart.MainActivity;
+
+
 import com.app.seniorproject.mainseniorprojectpart.helper.AppController;
 import com.app.seniorproject.mainseniorprojectpart.R;
 import com.app.seniorproject.mainseniorprojectpart.helper.URLs;
@@ -41,8 +45,6 @@ public class LoginDialog extends DialogFragment {
     LayoutInflater inflater;
     View v;
 
-
-
     /////////////////////////test code
     //Views
     private EditText editTextEmail;
@@ -51,13 +53,11 @@ public class LoginDialog extends DialogFragment {
     ///////////////////////end test code
 
 
-
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
         inflater = getActivity().getLayoutInflater();
-
         v = inflater.inflate(R.layout.dialog_login,null);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -72,7 +72,6 @@ public class LoginDialog extends DialogFragment {
         //Starting chat room
         if(AppController.getInstance().isLoggedIn()){
             getActivity().finish();
-            System.out.println("HEYYYYYYYYYYYYYYYYYYYYYYY");
 //            Intent intent = new Intent(getActivity(), MainActivity.class);
 //            startActivity(intent);
             startActivity(new Intent(getActivity(), MainActivity.class));
@@ -87,6 +86,7 @@ public class LoginDialog extends DialogFragment {
                 editTextEmail = (EditText) getDialog().findViewById(R.id.loginEmailTextField);
                 editTextName = (EditText) getDialog().findViewById(R.id.passwordTextField);
                 registerUser();
+                startActivity(new Intent(getActivity(),MainActivity.class));
 
                 //////////////////////////// Starts main page  original code
                 //Intent intent = new Intent(getActivity(), MainActivity.class);
@@ -105,10 +105,12 @@ public class LoginDialog extends DialogFragment {
     }
 
     //Method to register user
-    private void registerUser() {
+    public void registerUser() {
         final ProgressDialog progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Entering chat room");
         progressDialog.show();
+
+
 
         final String name = editTextName.getText().toString().trim();
         final String email = editTextEmail.getText().toString().trim();
@@ -117,7 +119,7 @@ public class LoginDialog extends DialogFragment {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        progressDialog.hide();
+                        progressDialog.dismiss();
                         try {
                             JSONObject obj = new JSONObject(response);
                             int id = obj.getInt("id");
@@ -127,9 +129,15 @@ public class LoginDialog extends DialogFragment {
                             //Login user
                             AppController.getInstance().loginUser(id,name,email);
 
+                            //startActivity(new Intent(getActivity().getBaseContext()., MainActivity.class));
+
+
+
+
                             //////////////////////Starting chat room we need to create this activity
-                            LoginDialogComm comm = (LoginDialogComm) getActivity();
-                            comm.methodToPassDataToLogin(true);
+
+                            //LoginDialogComm comm = (LoginDialogComm) getDialog();
+                            //comm.methodToPassDataToLogin(true);
 
                             //startActivity(new Intent(getActivity(), MainActivity.class));
                             /////////////////////////////////////////
@@ -168,6 +176,8 @@ public class LoginDialog extends DialogFragment {
 
         }
     }
+
+
 
 /*
     @Override

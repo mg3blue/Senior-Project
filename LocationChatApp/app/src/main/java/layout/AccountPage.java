@@ -49,8 +49,7 @@ public class AccountPage extends Fragment {
             }
         });
 
-        //TextView test = (TextView) getActivity().findViewById(R.id.textView);
-        //test.setText(AppController.getInstance().getUserName());
+
 
         return inflatedView;
     }
@@ -86,6 +85,9 @@ public class AccountPage extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        TextView test = (TextView) getActivity().findViewById(R.id.textView);
+        test.setText(AppController.getInstance().getUserName());
+        System.out.println(AppController.getInstance().getUserName());
         super.onViewCreated(view, savedInstanceState);
 
     }
