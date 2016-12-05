@@ -45,6 +45,7 @@ public class LoginDialog extends DialogFragment {
     LayoutInflater inflater;
     View v;
 
+
     /////////////////////////test code
     //Views
     private EditText editTextEmail;
@@ -63,6 +64,8 @@ public class LoginDialog extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
 
+
+
         /////////////////////////////////////////////////////////////////Test
         super.onCreate(savedInstanceState);
 
@@ -72,8 +75,7 @@ public class LoginDialog extends DialogFragment {
         //Starting chat room
         if(AppController.getInstance().isLoggedIn()){
             getActivity().finish();
-//            Intent intent = new Intent(getActivity(), MainActivity.class);
-//            startActivity(intent);
+
             startActivity(new Intent(getActivity(), MainActivity.class));
         }
         ///////////////////////////////////////////////////////////////end test code
@@ -88,10 +90,6 @@ public class LoginDialog extends DialogFragment {
                 registerUser();
                 startActivity(new Intent(getActivity(),MainActivity.class));
 
-                //////////////////////////// Starts main page  original code
-                //Intent intent = new Intent(getActivity(), MainActivity.class);
-                //startActivity(intent);
-                /////////////////////////////////
 
             }
         }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -129,19 +127,6 @@ public class LoginDialog extends DialogFragment {
                             //Login user
                             AppController.getInstance().loginUser(id,name,email);
 
-                            //startActivity(new Intent(getActivity().getBaseContext()., MainActivity.class));
-
-
-
-
-                            //////////////////////Starting chat room we need to create this activity
-
-                            //LoginDialogComm comm = (LoginDialogComm) getDialog();
-                            //comm.methodToPassDataToLogin(true);
-
-                            //startActivity(new Intent(getActivity(), MainActivity.class));
-                            /////////////////////////////////////////
-
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -176,15 +161,6 @@ public class LoginDialog extends DialogFragment {
 
         }
     }
-
-
-
-/*
-    @Override
-    public void onClick(View v) {
-        registerUser();
-    }
-    */
-
+    
 
 }
