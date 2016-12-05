@@ -42,14 +42,12 @@ public class LoginDialog extends DialogFragment {
     View v;
 
 
-
     /////////////////////////test code
     //Views
     private EditText editTextEmail;
     private EditText editTextName;
 
     ///////////////////////end test code
-
 
 
     @NonNull
@@ -63,6 +61,8 @@ public class LoginDialog extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
 
+
+
         /////////////////////////////////////////////////////////////////Test
         super.onCreate(savedInstanceState);
 
@@ -72,9 +72,7 @@ public class LoginDialog extends DialogFragment {
         //Starting chat room
         if(AppController.getInstance().isLoggedIn()){
             getActivity().finish();
-            System.out.println("HEYYYYYYYYYYYYYYYYYYYYYYY");
-//            Intent intent = new Intent(getActivity(), MainActivity.class);
-//            startActivity(intent);
+
             startActivity(new Intent(getActivity(), MainActivity.class));
         }
         ///////////////////////////////////////////////////////////////end test code
@@ -87,11 +85,8 @@ public class LoginDialog extends DialogFragment {
                 editTextEmail = (EditText) getDialog().findViewById(R.id.loginEmailTextField);
                 editTextName = (EditText) getDialog().findViewById(R.id.passwordTextField);
                 registerUser();
-
-                //////////////////////////// Starts main page  original code
-                //Intent intent = new Intent(getActivity(), MainActivity.class);
-                //startActivity(intent);
-                /////////////////////////////////
+                // we need to add checker instead here when we add the register functionality
+                startActivity(new Intent(getActivity(), MainActivity.class));
 
             }
         }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -127,14 +122,6 @@ public class LoginDialog extends DialogFragment {
                             //Login user
                             AppController.getInstance().loginUser(id,name,email);
 
-                            //////////////////////Starting chat room we need to create this activity
-                            LoginDialogComm comm = (LoginDialogComm) getActivity();
-                            comm.methodToPassDataToLogin(true);
-
-                            //startActivity(new Intent(getActivity(), MainActivity.class));
-                            /////////////////////////////////////////
-
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -168,13 +155,6 @@ public class LoginDialog extends DialogFragment {
 
         }
     }
-
-/*
-    @Override
-    public void onClick(View v) {
-        registerUser();
-    }
-    */
 
 
 }
