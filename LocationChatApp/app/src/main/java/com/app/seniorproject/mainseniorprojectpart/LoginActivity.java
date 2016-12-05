@@ -4,6 +4,8 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
@@ -31,18 +33,30 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.app.seniorproject.mainseniorprojectpart.dialogs.LoginDialog;
 import com.app.seniorproject.mainseniorprojectpart.dialogs.RegisterDialog;
+import com.app.seniorproject.mainseniorprojectpart.helper.AppController;
+import com.app.seniorproject.mainseniorprojectpart.helper.URLs;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity{
+public class LoginActivity extends AppCompatActivity implements LoginDialogComm{
 
     private static final int REQUEST_READ_CONTACTS = 0;
 
@@ -88,8 +102,11 @@ public class LoginActivity extends AppCompatActivity{
             }
         });
 
+        if(AppController.getInstance().isLoggedIn()){
+            this.finish();
 
-
+            startActivity(new Intent(this, MainActivity.class));
+        }
     }
 
 
@@ -114,8 +131,6 @@ public class LoginActivity extends AppCompatActivity{
         }
         return false;
     }
-
-
 
 
     private boolean isEmailValid(String email) {
@@ -173,5 +188,51 @@ public class LoginActivity extends AppCompatActivity{
         mEmailView.setAdapter(adapter);
     }
 
+    @Override
+    public void registerUser(String one, String two, Context context) {
+
+        final ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage("Entering chat room");
+        progressDialog.show();
+
+        final String name = one;
+        final String email = two;
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.URL_REGISTER,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        progressDialog.dismiss();
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            int id = obj.getInt("id");
+                            String name = obj.getString("name");
+                            String email = obj.getString("email");
+
+                            //Login user
+                            AppController.getInstance().loginUser(id,name,email);
+                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("name", name);
+                params.put("email", email);
+                return params;
+            }
+        };
+        AppController.getInstance().addToRequestQueue(stringRequest);
+    }
 }
 

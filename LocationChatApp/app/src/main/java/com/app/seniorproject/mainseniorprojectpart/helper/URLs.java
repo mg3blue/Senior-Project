@@ -5,7 +5,7 @@ package com.app.seniorproject.mainseniorprojectpart.helper;
  */
 
 public class URLs {
-    public static final String ROOT_URL = "http://192.168.0.16/SeniorProj/eden/";
+    public static final String ROOT_URL = "http://172.21.35.34/SeniorProj/eden/";
     //172.28.145.143
 
     public static final String URL_REGISTER = ROOT_URL + "register";

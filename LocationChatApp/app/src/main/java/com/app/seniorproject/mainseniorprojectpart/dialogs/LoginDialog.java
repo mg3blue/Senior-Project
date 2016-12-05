@@ -1,9 +1,7 @@
 package com.app.seniorproject.mainseniorprojectpart.dialogs;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,8 +10,6 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.EditText;
 
 import com.android.volley.AuthFailureError;
@@ -21,7 +17,6 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.app.seniorproject.mainseniorprojectpart.LoginActivity;
 import com.app.seniorproject.mainseniorprojectpart.LoginDialogComm;
 import com.app.seniorproject.mainseniorprojectpart.MainActivity;
 
@@ -51,6 +46,7 @@ public class LoginDialog extends DialogFragment {
     private EditText editTextEmail;
     private EditText editTextName;
 
+
     ///////////////////////end test code
 
 
@@ -63,22 +59,15 @@ public class LoginDialog extends DialogFragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-
-
-
-        /////////////////////////////////////////////////////////////////Test
         super.onCreate(savedInstanceState);
 
-        //Initializing views
 
-        //If the user is already logged in
-        //Starting chat room
+        //If user is logged in already start activity
         if(AppController.getInstance().isLoggedIn()){
             getActivity().finish();
 
             startActivity(new Intent(getActivity(), MainActivity.class));
         }
-        ///////////////////////////////////////////////////////////////end test code
 
         //For the sign in button
         builder.setView(v).setPositiveButton("Sign In", new DialogInterface.OnClickListener() {
@@ -87,9 +76,13 @@ public class LoginDialog extends DialogFragment {
 
                 editTextEmail = (EditText) getDialog().findViewById(R.id.loginEmailTextField);
                 editTextName = (EditText) getDialog().findViewById(R.id.passwordTextField);
-                registerUser();
-                startActivity(new Intent(getActivity(),MainActivity.class));
 
+                final String name = editTextName.getText().toString().trim();
+                final String email = editTextEmail.getText().toString().trim();
+                //registerUser();
+
+                LoginDialogComm comm = (LoginDialogComm) getActivity();
+                comm.registerUser(name, email, getContext());
 
             }
         }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -102,55 +95,6 @@ public class LoginDialog extends DialogFragment {
         return builder.create();
     }
 
-    //Method to register user
-    public void registerUser() {
-        final ProgressDialog progressDialog = new ProgressDialog(getContext());
-        progressDialog.setMessage("Entering chat room");
-        progressDialog.show();
-
-
-
-        final String name = editTextName.getText().toString().trim();
-        final String email = editTextEmail.getText().toString().trim();
-
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.URL_REGISTER,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        progressDialog.dismiss();
-                        try {
-                            JSONObject obj = new JSONObject(response);
-                            int id = obj.getInt("id");
-                            String name = obj.getString("name");
-                            String email = obj.getString("email");
-
-                            //Login user
-                            AppController.getInstance().loginUser(id,name,email);
-
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                    }
-                }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("name", name);
-                params.put("email", email);
-                return params;
-            }
-        };
-        AppController.getInstance().addToRequestQueue(stringRequest);
-    }
-
-
     @Override
     public void onResume() {
         super.onResume();
@@ -161,6 +105,6 @@ public class LoginDialog extends DialogFragment {
 
         }
     }
-    
+
 
 }
