@@ -104,7 +104,6 @@ public class LoginActivity extends AppCompatActivity implements LoginDialogComm{
 
         if(AppController.getInstance().isLoggedIn()){
             this.finish();
-
             startActivity(new Intent(this, MainActivity.class));
         }
     }
