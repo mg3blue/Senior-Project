@@ -15,11 +15,11 @@ class DbOperation
     }
 
     //Function to create a new user
-    public function createUser($name, $email)
+    public function createUser($name, $email, $password)
     {
         if (!$this->isUserExists($email)) {
-            $stmt = $this->conn->prepare("INSERT INTO users(name, email) values(?, ?)");
-            $stmt->bind_param("ss", $name, $email);
+            $stmt = $this->conn->prepare("INSERT INTO users(name, email, password) values(?, ?, ?)");
+            $stmt->bind_param("sss", $name, $email, $password);
             $result = $stmt->execute();
             $stmt->close();
             if ($result) {
@@ -31,6 +31,29 @@ class DbOperation
             return USER_ALREADY_EXISTED;
         }
     }
+
+
+    public function userLogin($email,$password){
+        //Generating password hash
+        //$password = md5($pass);
+        //Creating query
+        $stmt = $this->conn->prepare("SELECT * FROM users WHERE email=? and password=?");
+        //binding the parameters
+        $stmt->bind_param("ss",$email,$password);
+        //executing the query
+        $stmt->execute();
+        //Storing result
+        $stmt->store_result();
+        //Getting the result
+        $num_rows = $stmt->num_rows;
+        //closing the statment
+        $stmt->close();
+        //If the result value > 0 means user found in the database with given email and password
+        //So returning true
+        return $num_rows>0;
+    }
+
+
 
     //Function to get the user with email
     public function getUser($email)

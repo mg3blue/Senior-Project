@@ -189,20 +189,21 @@ public class LoginActivity extends AppCompatActivity implements LoginDialogComm{
     }
 
     @Override
-    public void registerUser(String one, String two, Context context) {
+    public void registerUser(String name1, String email1, String password1, Context context) {
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Entering chat room");
+        progressDialog.setMessage("Registering User");
         progressDialog.show();
 
-        final String name = one;
-        final String email = two;
+        final String name = name1;
+        final String email = email1;
+        final String password = password1;
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.URL_REGISTER,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        progressDialog.dismiss();
+                        progressDialog.hide();
                         try {
                             JSONObject obj = new JSONObject(response);
                             int id = obj.getInt("id");
@@ -229,6 +230,54 @@ public class LoginActivity extends AppCompatActivity implements LoginDialogComm{
                 Map<String, String> params = new HashMap<>();
                 params.put("name", name);
                 params.put("email", email);
+                params.put("password", password);
+                return params;
+            }
+        };
+        AppController.getInstance().addToRequestQueue(stringRequest);
+    }
+
+    @Override
+    public void loginUser(String email1, String password1, Context context) {
+
+        final ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage("Logging in User");
+        progressDialog.show();
+
+        final String email = email1;
+        final String password = password1;
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.URL_LOGIN,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        progressDialog.hide();
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            int id = obj.getInt("id");
+                            String name = obj.getString("name");
+                            String email = obj.getString("email");
+
+                            //Login user
+                            AppController.getInstance().loginUser(id,name,email);
+                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("email", email);
+                params.put("password", password);
                 return params;
             }
         };

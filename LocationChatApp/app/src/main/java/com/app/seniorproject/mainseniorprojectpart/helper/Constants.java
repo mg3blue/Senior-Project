@@ -5,7 +5,7 @@ package com.app.seniorproject.mainseniorprojectpart.helper;
  */
 
 public class Constants {
-    public static final String SHARED_PREF_NAME = "simplifiedcodingchat";
+    public static final String SHARED_PREF_NAME = "locationChat";
     public static final String USER_ID = "userid";
     public static final String USER_NAME = "username";
     public static final String USER_EMAIL= "useremail";

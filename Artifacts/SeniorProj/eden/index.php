@@ -15,11 +15,11 @@ $user_id = NULL;
  * User Registration
  * url - /register
  * method - POST
- * params - name, email
+ * params - name, email, password
  */
 $app->post('/register', function () use ($app) {
     //Verifying parameters
-    verifyRequiredParams(array('name', 'email'));
+    verifyRequiredParams(array('name', 'email', 'password'));
 
     //Response array
     $response = array();
@@ -27,6 +27,7 @@ $app->post('/register', function () use ($app) {
     //Getting request parameters
     $name = $app->request->post('name');
     $email = $app->request->post('email');
+    $password = $app->request->post('password');
 
     //Vaidating email
     validateEmail($email);
@@ -35,7 +36,7 @@ $app->post('/register', function () use ($app) {
     $db = new DbOperation();
 
     //INserting user to database
-    $res = $db->createUser($name, $email);
+    $res = $db->createUser($name, $email, $password);
 
     //If user created
     //Adding the user detail to response
@@ -69,6 +70,52 @@ $app->post('/register', function () use ($app) {
         echoResponse(200, $response);
     }
 });
+
+///////////////////////////////////////////////////////////////
+/**
+ * User Login
+ * url - /login
+ * method - POST
+ * params - email, password
+ */
+$app->post('/login', function () use ($app) {
+    //Verifying parameters
+    verifyRequiredParams(array('email', 'password'));
+
+    //Getting request parameters
+    $email = $app->request->post('email');
+    $password = $app->request->post('password');
+
+    //Vaidating email
+    validateEmail($email);
+
+    //Creating a db object
+    $db = new DbOperation();
+
+    //Response array
+    $response = array();
+
+    //If email and password correct
+    if ($db->userLogin($email,$password)) {
+
+        //Getting user
+        $user = $db->getUser($email);
+
+        //Generating response
+        $response["error"] = false;
+        $response['id'] = $user['id'];
+        $response['name'] = $user['name'];
+        $response['email'] = $user['email'];
+
+        echoResponse(200, $response);
+
+      
+    } else{
+        $response["error"] = true;
+        $response["message"] = "Invalid username or password";
+        echoResponse(200, $response);
+    } 
+});///////////////////////////////////////////////////////////////////////
 
 /*
  * URL: /send
@@ -179,11 +226,13 @@ function validateEmail($email)
 //Function to display the response in browser
 function echoResponse($status_code, $response)
 {
+    //Getting app instance
     $app = \Slim\Slim::getInstance();
     // Http response code
     $app->status($status_code);
     // setting response content type to json
     $app->contentType('application/json');
+    //displaying the resonse content type to json
     echo json_encode($response);
 }
 

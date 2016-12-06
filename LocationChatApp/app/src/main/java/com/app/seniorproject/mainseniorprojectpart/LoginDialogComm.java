@@ -7,5 +7,7 @@ import android.content.Context;
  */
 
 public interface LoginDialogComm {
-    void registerUser(String one, String two, Context context);
+
+    void registerUser(String name1, String email1, String password1, Context context);
+    void loginUser(String email1, String password1, Context context);
 }

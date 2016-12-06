@@ -11,6 +11,7 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -40,14 +41,8 @@ public class LoginDialog extends DialogFragment {
     LayoutInflater inflater;
     View v;
 
-
-    /////////////////////////test code
-    //Views
     private EditText editTextEmail;
-    private EditText editTextName;
-
-
-    ///////////////////////end test code
+    private EditText editTextPW;
 
 
     @NonNull
@@ -58,16 +53,7 @@ public class LoginDialog extends DialogFragment {
         v = inflater.inflate(R.layout.dialog_login,null);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-
         super.onCreate(savedInstanceState);
-
-
-        //If user is logged in already start activity
-        if(AppController.getInstance().isLoggedIn()){
-            getActivity().finish();
-
-            startActivity(new Intent(getActivity(), MainActivity.class));
-        }
 
         //For the sign in button
         builder.setView(v).setPositiveButton("Sign In", new DialogInterface.OnClickListener() {
@@ -75,14 +61,14 @@ public class LoginDialog extends DialogFragment {
             public void onClick(DialogInterface dialogInterface, int i) {
 
                 editTextEmail = (EditText) getDialog().findViewById(R.id.loginEmailTextField);
-                editTextName = (EditText) getDialog().findViewById(R.id.passwordTextField);
+                editTextPW = (EditText) getDialog().findViewById(R.id.loginPasswordTextField);
 
-                final String name = editTextName.getText().toString().trim();
                 final String email = editTextEmail.getText().toString().trim();
-                //registerUser();
+                final String password = editTextPW.getText().toString().trim();
 
                 LoginDialogComm comm = (LoginDialogComm) getActivity();
-                comm.registerUser(name, email, getContext());
+                comm.loginUser(email, password, getContext());
+
 
             }
         }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -94,17 +80,4 @@ public class LoginDialog extends DialogFragment {
 
         return builder.create();
     }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        //Checking if user is logged in
-        if(AppController.getInstance().isLoggedIn()){
-            getActivity().finish();
-            startActivity(new Intent(getActivity(), MainActivity.class));
-
-        }
-    }
-
-
 }
