@@ -223,7 +223,8 @@ public class LoginActivity extends AppCompatActivity implements LoginDialogComm{
                     public void onErrorResponse(VolleyError error) {
 
                     }
-                }) {
+                })
+        {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
