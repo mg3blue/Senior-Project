@@ -59,6 +59,8 @@ public class LoginDialog extends DialogFragment {
         builder.setView(v).setPositiveButton("Sign In", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+//                Intent intent = new Intent(getActivity(), MainActivity.class);
+
 
                 editTextEmail = (EditText) getDialog().findViewById(R.id.loginEmailTextField);
                 editTextPW = (EditText) getDialog().findViewById(R.id.loginPasswordTextField);

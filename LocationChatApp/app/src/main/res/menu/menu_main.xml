@@ -4,7 +4,7 @@
     tools:context="com.app.seniorproject.mainseniorprojectpart.MainActivity">
     <item
         android:id="@+id/action_settings"
-        android:icon ="@drawable/ic_settings_black_24dp_2x"
+        android:icon ="@drawable/ic_settings_white_24dp"
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="always" />
