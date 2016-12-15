@@ -26,13 +26,15 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_gravity="center_vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:weightSum="1"
+            android:padding="25dp">
 
 
             <Button
                 android:id="@+id/email_sign_in_button"
                 style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="wrap_content"
+                android:layout_width="138dp"
                 android:layout_height="match_parent"
                 android:layout_marginTop="16dp"
                 android:text="@string/action_sign_in_short"
@@ -40,18 +42,20 @@
                 android:paddingBottom="4dp"
                 android:paddingLeft="4dp"
                 android:paddingRight="4dp"
-                android:paddingTop="4dp" />
+                android:paddingTop="4dp"
+                android:layout_weight="1.47" />
 
             <Button
                 android:text="Register"
                 android:id="@+id/email_register_button"
-                android:layout_width="wrap_content"
+                android:layout_width="113dp"
                 android:layout_height="wrap_content"
                 android:paddingBottom="4dp"
                 android:paddingLeft="4dp"
                 android:paddingRight="4dp"
                 android:paddingTop="4dp"
-                style="@style/Widget.AppCompat.Button.Colored" />
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_weight="1.09" />
 
         </LinearLayout>
     </ScrollView>
